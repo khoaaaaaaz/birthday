@@ -15,19 +15,45 @@
   <div class="container">
     <div class="one">
       <h1 class="one">
-        <span data-node-name="greeting">Hey</span>
-        <span data-node-name="name">Lydia</span>
+        <span class="greeting-block">
+          <span data-node-name="greeting">Hey</span>
+          <span data-node-name="name" class="name">Mia</span>
+        </span>
+        <img class="img-two" src="img/happy_broccoli.png" alt="">
       </h1>
-      <p class="two" data-node-name="greetingText">I really like your name btw!</p>
+
+      <h1 class="one-2">
+        <span class="another-name">
+          Or should I call you 
+          <span class="baby">babyyyyyyy</span> 
+          <span class="heart" id="heart"></span>
+        </span>
+      </h1>
+
+      <p class="two" data-node-name="greetingText">
+        I really like your name btw! 
+      </p>
+      <span class="wink" style="opacity: 0;">😉</span>
     </div>
+
     <div class="three">
       <p data-node-name="text1">It's your birthday!!! :D</p>
+      <img src="img/khoa.png" alt="">
     </div>
     <div class="four">
       <div class="text-box">
-        <p class="hbd-chatbox" data-node-name="textInChatBox">Happy birthday to you!! Yeee! Many many happy blah...</p>
-        <p class="fake-btn" data-node-name="sendButtonLabel">Send</p>
+         <div class="chat-header">
+          <span>Bánh bao 🤩</span>
+        </div>
+        <div class="chat-area">
+          </div>
+
+        <div class="chat-input-bar">
+          <p class="hbd-chatbox" data-node-name="textInChatBox">Happy birthday to you!! Yeee! Many many happy blah...</p>
+          <p class="fake-btn" data-node-name="sendButtonLabel">Send</p>
+        </div>
       </div>
+
     </div>
     <div class="five">
       <p class="idea-1" data-node-name="text2">That's what I was going to do.</p>
@@ -35,10 +61,13 @@
       <p class="idea-3">
         <span data-node-name="text4">I realised, I wanted to do something</span>
         <strong data-node-name="text4Adjective">special</strong>.</p>
+        
       <p class="idea-4" data-node-name="text5Entry">Because,</p>
       <p class="idea-5">
-        <span data-node-name="text5Content">You are Special</span>
-        <span class="smiley" data-node-name="smiley">:)</span>
+        
+          <span data-node-name="text5Content">You are </span>
+          <span class="smiley" data-node-name="smiley">:)</span>
+
       </p>
       <p class="idea-6">
         <span data-node-name="bigTextPart1">S</span>
@@ -46,8 +75,10 @@
       </p>
     </div>
     <div class="six">
-      <img src="img/lydia2.png" alt="" class="lydia-dp" data-node-name="imagePath">
-      <img src="img/hat.svg" alt="" class="hat">
+      <div class="avatar-container">
+        <img src="img/Mia.png" alt="" class="lydia-dp" data-node-name="imagePath">
+        <img src="img/hat.svg" alt="" class="hat">
+      </div>
       <div class="wish">
         <h3 class="wish-hbd" data-node-name="wishHeading">Happy Birthday!</h3>
         <h5 data-node-name="wishText">May the js.prototypes always be with you! ;)</h5>
@@ -55,39 +86,7 @@
     </div>
     <div class="seven">
       <div class="baloons">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon2.svg" alt="">
-        <img src="img/ballon1.svg" alt="">
-        <img src="img/ballon3.svg" alt="">
+        
       </div>
     </div>
     <div class="eight">
@@ -125,9 +124,14 @@
       <p class="last-smile" data-node-name="outroSmiley">:)</p>
     </div>
   </div>
+  <img src="img/flower1.jpg" alt="right-flowers" class="corner-flower bottom-left">
+  <img src="img/flower2.jpg" alt="right-flowers" class="corner-flower bottom-right">
+
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-<script type="application/javascript" src="script/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script type="application/javascript" src="script/main_new.js"></script>
 
 </html>

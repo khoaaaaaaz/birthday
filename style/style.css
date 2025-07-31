@@ -1,101 +1,276 @@
+/* General Setup */
 html {
   box-sizing: border-box;
 }
-
+img {
+  user-select: none;
+  -webkit-user-drag: none; /* Dành cho các trình duyệt dựa trên WebKit như Chrome, Safari */
+}
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
+  background-color: #fde2e4; /* Added a soft background color */
+  overflow: hidden;
 }
 
 .container {
   height: 100vh;
-  width: 100vh;
+  width: 100%; /* Changed to 100% for better responsiveness */
   margin: 0 auto;
   text-align: center;
   visibility: hidden;
   position: relative;
-  overflow: hidden;
+
 }
 
-.container div.six {
-  top: 10vh;
-  z-index: 1;
-}
+/* Generic rule for main sections */
 
-.container div.seven,
-.container div.eight {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-}
 
-.container > div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 20vh;
-}
+/* ============================================= */
+/* SECTION 1: GREETING (div.one) - FIXED LAYOUT */
+/* ============================================= */
 
+/* We use Flexbox on the h1 to control the layout */
+/* Sửa lại quy tắc này */
 .one {
+  /* Biến thành một khối để kiểm soát chiều rộng và căn giữa */
+  display: block;
+  max-width: 900px; /* Đặt chiều rộng tối đa cho khối, bạn có thể điều chỉnh */
+  margin: 0 auto;   /* Tự động căn giữa khối theo chiều ngang */
+}
+/* Thêm quy tắc mới này */
+.one h1, .one .one-2, .one .two {
+    text-align: left;
+}
+h1.one {
   font-size: 4.5rem;
+  display: flex;
+  align-items: center; /* Căn giữa chữ và ảnh theo chiều dọc */
+  gap: 20px;
+}
+.one .name {
+  transition: color 0.6s ease-in-out;
 }
 
-.one > img {
+.one .img-two {
+  display: inline-block;
   vertical-align: middle;
-  margin-bottom: 10px;
-  max-width: 100%;
-  height: auto;
+  height:320px; /* Tăng kích thước bằng px */
+  width: 350px;  /* Thêm width để đảm bảo tỉ lệ */
+  opacity: 0;
+  transform: scale(0.5);
+  transform-origin: left center;
 }
 
+
+.one-2 {
+  font-size: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.one-2 .baby {
+  color: inherit;
+  transition: color 0.6s ease-in-out;
+}
+
+p.two {
+  display: inline-block;
+  margin: 0; /* Bỏ margin mặc định của thẻ p */
+}
+.wink {
+  display: inline-block;
+  opacity: 0;
+  font-size: 25px;
+  vertical-align: baseline; /* Căn chỉnh với dòng chữ */
+  margin-left: 8px; /* Tạo khoảng cách nhỏ */
+}
 .two {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: lighter;
 }
 
-.three {
+/* Thêm hiệu ứng màu gradient lấp lánh cho chữ */
+.three p {
   font-size: 3rem;
+  background-image: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: text-shine 3s linear infinite;
+}
+/* CSS cho hình ảnh mới trong div.three */
+.three img {
+  display: block;
+  margin: 20px auto 0; /* Căn giữa và tạo khoảng cách với chữ */
+  max-width: 300px;   /* Giới hạn chiều rộng của ảnh */
+  opacity: 0;     
+  position: relative; /* Thêm dòng này để có thể sử dụng z-index */
+  z-index: 10;    /* Quan trọng: Ẩn ảnh đi lúc đầu */
 }
 
+/* Animation làm cho màu di chuyển */
+@keyframes text-shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ================================================== */
+/* SECTION 4: PHONE (div.four) - FIXED POSITIONING */
+/* ================================================== */
+
+/* This rule forces the container to be fullscreen, allowing vertical centering */
+.four {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* The phone frame itself */
 .four .text-box {
-  width: 600px;
-  margin: 0 auto;
-  border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
+  width: 400px;
+  height: 520px;
+  background: #fff;
+  border: 14px solid #333;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
   position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.text-box p {
-  margin: 0;
-  text-align: left;
+/* Chat Header */
+.chat-header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
 }
 
-.text-box span {
+/* Chat Area */
+.chat-area {
+  flex-grow: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Chat Input Bar */
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-top: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+/* The fake text input box */
+.hbd-chatbox {
+ flex-grow: 1;
+ min-width: 0; /* Thêm dòng này để ô chat có thể co lại khi cần */
+ margin: 0;
+ padding: 8px 12px;
+ border: 1px solid #ccc;
+ border-radius: 18px;
+ background-color: #f1f1f1;
+ text-align: left;
+ overflow-y: auto;
+ white-space: normal;
+word-break: break-all;
+}
+
+/* The characters inside the input box (NO STYLING) */
+.hbd-chatbox span {
   visibility: hidden;
 }
 
-.text-box .fake-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  color: #fff;
+/* The send button */
+.fake-btn {
+  margin-left: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+audio {
+  display: none;
+}
+/* The blue sent message bubble */
+.sent-bubble {
+  background-color: #0084ff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 75%;
+  align-self: flex-end;
+  margin-top: 5px;
+  opacity: 0;
+  word-break: break-word;
+  white-space: normal;
+}
+
+
+/* ============================================= */
+/* OTHER SECTIONS & ANIMATIONS */
+/* ============================================= */
+
+.three, .six, .nine {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    /* Đặt khối ở vị trí 45% từ trên xuống */
+    top: 45%;
+    /* Dịch chuyển khối lên trên 50% chiều cao của chính nó để tâm của khối nằm ở mốc 45% */
+    transform: translateY(-50%);
+} 
+
+.five {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0; /* Đưa lên cao, cách đỉnh 15% chiều cao màn hình */
+}
+[data-node-name="text5Content"] {
+  display: inline-block; /* Để có thể nhận background và padding */
+  padding: 0 8px;
+  border-radius: 5px;
 }
 
 .five p {
   font-size: 2rem;
-  position: absolute;
-  left: 0;
-  right: 0;
+
 }
 
+/* CSS cho hiệu ứng chữ "special" */
 .idea-3 strong {
-  padding: 3px 5px;
-  border-radius: 3px;
-  display: inline-block;
+  /* Biến thành flex container để chứa các ký tự */
+  display: inline-flex;
+  /* Bỏ đi các style cũ không cần thiết */
+  padding-left: 10px;
+  background-color: transparent;
+  opacity: 0; /* Quan trọng: Thêm dòng này để ẩn khối đi lúc đầu */
 }
 
 .five .idea-5 {
@@ -103,117 +278,134 @@ body {
 }
 
 .idea-5 span,
-.idea-6 span,
+
 .wish-hbd span {
   display: inline-block;
+}
+/* style.css */
+
+.idea-6 {
+  /* Tách nó ra khỏi dòng chảy của các thẻ <p> khác */
+  position: absolute; 
+  /* Căn nó vào giữa của thẻ cha (div.five) */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Đảm bảo nó có đủ không gian và căn chữ bên trong ra giữa */
+  width: 100%;
+  text-align: center;
 }
 
 .idea-6 span {
   font-size: 15rem;
 }
 
+/* Đoạn CSS mới */
+/* Đoạn CSS đã được dọn dẹp của .six */
 .six {
-  position: relative;
+  /* position và top đã được xóa đi */
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.six img {
-  display: inline-block;
+/* Container mới để định vị mũ dễ dàng */
+.avatar-container {
+    position: relative; /* Quan trọng: làm mốc cho .hat */
+    display: inline-block;
+}
+
+.six .lydia-dp {
   max-width: 100%;
-  height: auto;
+  height: 400px;
 }
 
 .six .hat {
-  position: absolute;
-  width: 80px;
-  top: -35px;
-  left: 41.5%;
-  /* transform: scale(0.1); */
+  position: absolute; /* Định vị theo .avatar-container */
+  width: 100px;
+  top: -95px; /* Đẩy mũ lên trên đỉnh ảnh */
+  left: 60%; /* Căn giữa theo chiều ngang */
+  transform: translateX(-50%); /* Tinh chỉnh để tâm mũ khớp với tâm ảnh */
+  z-index: 11; /* Đảm bảo mũ luôn ở trên ảnh */
 }
+
+/* Đoạn CSS mới */
+.seven {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Nằm dưới div.six (có z-index: 10) */
+  overflow: hidden; /* Ẩn phần bóng bay thừa */
+}
+
+/* style.css */
+
+.baloons {
+    position: absolute;
+    /* Cho vùng chứa bao phủ toàn bộ màn hình */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* style.css */
+
+/* style.css */
 
 .baloons img {
-  display: inline-block;
   position: absolute;
+  width: 150px;
+  height: 180px; /* Thêm chiều cao cố định */
+  object-fit: contain; /* Đảm bảo ảnh vừa vặn, không bị méo */
+  top: 105%;
+  opacity: 1;
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.2));
 }
 
-.baloons img:nth-child(even) {
-  left: -10%;
-}
 
-.baloons img:nth-child(odd) {
-  right: -10%;
-}
 
-.baloons img:nth-child(3n + 0) {
-  left: 30%;
+/* style.css */
+
+.eight {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Đưa hiệu ứng lên trên màu nền */
 }
 
 .eight svg {
-  width: 25px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
   visibility: hidden;
-  z-index: -1;
+  fill: transparent; /* Bỏ màu nền */
+  stroke-width: 2px; /* Thêm đường viền */
 }
-
-.eight svg:nth-child(1) {
-  top: 7vh;
-  left: 5vw;
-  fill: #bd6ecf;
-}
-
-.eight svg:nth-child(2) {
-  top: 23vh;
-  left: 35vw;
-  fill: #7dd175;
-}
-
-.eight svg:nth-child(3) {
-  top: 33vh;
-  left: 23vw;
-  fill: #349d8b;
-}
-
-.eight svg:nth-child(4) {
-  top: 43vh;
-  left: 57vw;
-  fill: #347a9d;
-}
-
-.eight svg:nth-child(5) {
-  top: 68vh;
-  left: 7vw;
-  fill: #c66053;
-}
-
-.eight svg:nth-child(6) {
-  top: 42vh;
-  left: 77vw;
-  fill: #bfaa40;
-}
-
-.eight svg:nth-child(7) {
-  top: 68vh;
-  left: 83vw;
-  fill: #e3bae8;
-}
-
-.eight svg:nth-child(8) {
-  top: 86vh;
-  left: 37vw;
-  fill: #8762cb;
-}
-
-.eight svg:nth-child(9) {
-  top: 94vh;
-  left: 87vw;
-  fill: #9a90da;
-}
+/* Gán màu cho đường viền (stroke) */
+.eight svg:nth-child(1) { stroke: #bd6ecf; }
+.eight svg:nth-child(2) { stroke: #7dd175; }
+.eight svg:nth-child(3) { stroke: #349d8b; }
+/* Thêm các màu khác nếu muốn */
+.eight svg:nth-child(4) { stroke: #347a9d; }
+.eight svg:nth-child(5) { stroke: #c66053; }
+.eight svg:nth-child(6) { stroke: #bfaa40; }
+.eight svg:nth-child(7) { stroke: #e3bae8; }
+.eight svg:nth-child(8) { stroke: #8762cb; }
+.eight svg:nth-child(9) { stroke: #9a90da; }
 
 .wish-hbd {
   font-size: 3em;
   margin: 0;
   text-transform: uppercase;
+  /* Thêm dòng này để chữ bắt đầu ở trạng thái lật ngược */
 }
 
 .wish h5 {
@@ -230,70 +422,66 @@ body {
 #replay {
   z-index: 3;
   cursor: pointer;
+  pointer-events: auto;
+
 }
 
-/* Media Queries */
-@media screen and (max-height: 1000px) {
-  .six .hat {
-    left: 40%;
-  }
+/* Heart Animation */
+.heart {
+  opacity: 0;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg) scale(1);
+  margin-left: 10px;
+  position: relative;
+  animation: heartbeat 1s infinite;
+  animation-play-state: paused;
+}
+.heart::before, .heart::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { top: 0; left: 10px; }
+@keyframes heartbeat {
+  0%, 100% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.3); }
 }
 
-@media screen and (max-height: 800px) {
-  .six .hat {
-    left: 37%;
-  }
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+  h1.one { font-size: 3rem; }
+  .one-2 { font-size: 2rem; }
+  .idea-6 span { font-size: 10rem; }
+  .wish-hbd { font-size: 2.2em; }
+  .wish h5 { font-size: 1.4rem; }
+  .nine p { font-size: 1.5rem; }
 }
 
-@media screen and (max-height: 700px) {
-  .six .hat {
-    left: 32%;
-  }
+
+/* style.css */
+
+/* Thêm khối mã này vào cuối tệp */
+.corner-flower {
+  position: fixed;
+  width: 250px; /* Điều chỉnh kích thước nếu muốn */
+  z-index: 5;
+  opacity: 0; /* Ẩn đi lúc ban đầu */
+  transform: translateY(20px); /* Hơi dịch chuyển xuống dưới để tạo hiệu ứng bay lên */
 }
 
-@media screen and (max-height: 850px) and (max-width: 450px) {
-  .six .hat {
-    left: 32%;
-  }
+.bottom-left {
+  bottom: 0;
+  left: 0;
 }
 
-@media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
-  }
-
-  .four .text-box {
-    width: 90%;
-  }
-
-  .text-box .fake-btn {
-    right: 5px;
-    bottom: -38px;
-  }
-
-  .idea-5 span {
-    display: block;
-  }
-
-  .idea-6 span {
-    font-size: 10rem;
-  }
-
-  .six .hat {
-    width: 50px;
-    top: -20px;
-  }
-
-  .wish-hbd {
-    font-size: 2.2em;
-  }
-
-  .wish h5 {
-    font-size: 1.4rem;
-  }
-
-  .nine p {
-    font-size: 1.5rem;
-    font-weight: lighter;
-  }
+.bottom-right {
+  bottom: 0;
+  right: 0;
 }
