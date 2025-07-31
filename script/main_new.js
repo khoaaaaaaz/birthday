@@ -64,7 +64,7 @@ const animationTimeline = () => {
     margin: '0 auto',
     zIndex: 2
   });
-  
+
   const hbdChatbox = document.querySelector(".hbd-chatbox");
   const chars = hbdChatbox.textContent.trim().split("");
   
@@ -97,7 +97,8 @@ const animationTimeline = () => {
   };
 
   const tl = gsap.timeline();
-
+ const music = document.getElementById('birthday-music');
+ 
   tl.to(".container", { duration: 0.1, visibility: "visible" })
     .from(oneEl, { duration: 0.7, opacity: 0, y: -50, ease: "power2.out" })
     
@@ -294,20 +295,13 @@ const animationTimeline = () => {
     stagger: 0.1,
     delay: 1.5 // Chờ một lúc lâu hơn
 })
-    // Hiệu ứng bóng bay lơ lửng
-// --- HIỆU ỨNG BÓNG BAY BAY NGẪU NHIÊN ---
-// --- UPDATED BALLOON ANIMATION ---
-// main_new.js
-
-// --- UPDATED BALLOON ANIMATION ---
-// main_new.js
-
-// --- FINAL BALLOON ANIMATION ---
-// main_new.js
+.call(() => {
+        if (music) music.play().catch(e => console.error("Trình duyệt đã chặn tự động phát nhạc."));
+    }, null, "scene-six-start")
 
 // Bắt đầu thay thế từ đây
     .to(".baloons img", {
-        duration: 8,
+        duration: 6,
         top: "-2%",
         ease: "sine.inOut",
         stagger: {
@@ -366,7 +360,7 @@ const animationTimeline = () => {
     document.addEventListener('touchend', onDragEnd);
     document.addEventListener('mouseleave', onDragEnd);
 }
-    }, "scene-six-start-=1")
+    }, "scene-six-start")
 
     // --- BẮT ĐẦU CHUỖI HIỆU ỨNG CHÚC MỪNG ĐÃ ĐƯỢC SẮP XẾP LẠI ---
 
@@ -422,7 +416,7 @@ const animationTimeline = () => {
         // Dừng bắn sau khoảng 6 giây để tránh lặp vô hạn
         setTimeout(() => {
             clearInterval(interval);
-        }, 6000);
+        }, 10000);
 
     }, "show-scene")
     // ... animation của .fromTo(".wish-hbd span", ...)
@@ -467,24 +461,44 @@ const animationTimeline = () => {
       }
   }, "show-scene+=1")
     // 4. CUỐI CÙNG: Màn hình biến mất (sau khi đã kéo dài thời gian)
-    .to(".six, .corner-flower", { duration: 1, opacity: 0, y: 30 , delay: 10}, "outro")
-.to(".seven", { duration: 1, opacity: 0, pointerEvents: 'none' }, "outro")
-.to(".nine", {
-  duration: 0.5,
-  opacity: 1,
-  pointerEvents: 'auto' // THÊM DÒNG NÀY
-}, "outro+=0.3")
-    .from(".nine p", {
-      duration: 1,
-      ...ideaTextTrans,
-      stagger: 1.2
-    })
+    // Đoạn mã mới đã sửa lỗi
+// 1. Làm mờ đồng loạt tất cả các phần tử của cảnh cũ và chờ 15 giây
+.to(".six, .seven, .eight, .corner-flower", {
+        duration: 1,
+        opacity: 0,
+        y: 30,
+        pointerEvents: 'none',
+        // Chờ cho đến khi nhạc kết thúc, với thời gian chờ mặc định là 28 giây nếu không lấy được
+        delay: 15
+    }, "outro")
+
+// 2. SAU KHI animation trên KẾT THÚC HOÀN TOÀN, mới bắt đầu hiện div.nine
+.from(".nine", {
+    duration: 1,
+    opacity: 0,
+    y: 20,
+    onStart: () => {
+        gsap.set(".nine", { zIndex: 20 });
+    }
+}, ">") // Ký tự ">" đảm bảo animation này chỉ bắt đầu sau khi animation trước kết thúc
+
+// 3. Hiệu ứng cho các dòng chữ trong div.nine
+.from(".nine p", {
+    duration: 1,
+    opacity: 0,
+    y: 20,
+    stagger: 0.5
+}, "<+=0.5") // Bắt đầu sau khi .nine hiện ra một chút// Đặt thời gian bắt đầu
     .to(".last-smile", { duration: 0.5, rotation: 90, delay: 1 });
 // Kết thúc thay thế ở đây
 
-  document.getElementById("replay").addEventListener("click", () => {
-    tl.restart();
-  });
+ document.getElementById("replay").addEventListener("click", () => {
+        if (music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+        tl.restart();
+    });
 };
 
 // Run fetch and animation in sequence

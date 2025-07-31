@@ -455,16 +455,38 @@ audio {
 }
 
 /* Media Queries for responsiveness */
+/* style.css */
+
 @media screen and (max-width: 768px) {
-  h1.one { font-size: 3rem; }
-  .one-2 { font-size: 2rem; }
-  .idea-6 span { font-size: 10rem; }
-  .wish-hbd { font-size: 2.2em; }
-  .wish h5 { font-size: 1.4rem; }
-  .nine p { font-size: 1.5rem; }
+  /* 1. Thu nhỏ mọi thứ một cách đồng bộ */
+  html {
+    font-size: 13px; /* Giảm kích thước font gốc, mọi thứ dùng 'rem' sẽ nhỏ theo */
+  }
+
+  /* 2. Sửa lỗi tràn chữ trong div.five */
+  .five {
+    top: 5vh; /* Đẩy khối lên cao hơn nữa */
+    height: 90vh; /* Giới hạn chiều cao trong 90% màn hình */
+    overflow-y: auto; /* Thêm thanh cuộn NẾU nội dung vẫn quá dài */
+    padding-bottom: 20px; /* Thêm khoảng đệm dưới để không bị sát đáy */
+  }
+
+  /* 3. Tinh chỉnh một vài mục đặc biệt cho cân đối */
+  .four .text-box {
+    width: 95%; /* Cho điện thoại rộng hơn một chút */
+  }
+  .idea-6 span {
+    font-size: 8rem; /* Vẫn cần giảm riêng cho chữ S O vì nó quá lớn */
+  }
 }
 
-
+.idea-3 strong {
+  display: inline-flex;
+  background-color: transparent;
+  opacity: 0;
+  margin-left: 6px; /* Thêm khoảng cách với chữ phía trước */
+  padding: 0 8px;   /* Thêm đệm trái phải cho cân đối */
+}
 /* style.css */
 
 /* Thêm khối mã này vào cuối tệp */
